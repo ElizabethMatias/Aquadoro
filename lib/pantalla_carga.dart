@@ -18,8 +18,7 @@ class _PantallaDeCargaState extends State<PantallaDeCarga> {
       navigateAfterSeconds: GoalsPage(),
       title: Text(
         'Aquadoro',
-        style: GoogleFonts.muktaVaani(
-          fontWeight: FontWeight.bold,
+        style: GoogleFonts.mansalva(
           fontSize: 60.0,
           color: Colors.blueGrey[50],
         ),

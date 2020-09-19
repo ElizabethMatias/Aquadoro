@@ -64,7 +64,7 @@ class _AquadoroState extends State<Aquadoro> {
                   SizedBox(
                     height: 20,
                   ),
-                  _aquadoroStack(ancho),
+                  _aquadoroStack(ancho, context),
                   Expanded(child: Container()),
                   _botones(),
                   Expanded(child: Container()),
@@ -253,7 +253,7 @@ class _AquadoroState extends State<Aquadoro> {
     }
   }
 
-  Widget _aquadoroStack(double ancho) {
+  Widget _aquadoroStack(double ancho, BuildContext context) {
     return Stack(
       children: <Widget>[
         Container(
@@ -279,11 +279,11 @@ class _AquadoroState extends State<Aquadoro> {
           ),
         ),*/
         Positioned(
-          top: 150,
-          left: ancho * 0.25,
+          top: 160,
+          left: 115,
           child: Container(
-            height: 160,
-            width: 190,
+            height: 100,
+            width: 170,
             child: Column(
               children: <Widget>[
                 Center(
@@ -503,39 +503,49 @@ class _AquadoroState extends State<Aquadoro> {
                     setState(() {
                       botonDeshabilitado = true;
                       resetDeshabilitado = false;
+                      animacionActual = "LoopRelax";
                     });
                     tDescansoSeg = (30 * 60);
-                    Timer.periodic(Duration(seconds: 1), (t) {
-                      setState(() {
-                        if (tDescansoSeg < 1 || revisarTiempoDes == true) {
-                          t.cancel();
-                          revisarTiempoDes = false;
-                          tiempoPantalla = '${widget.tDescanso.toString()}:00';
-                          botonDeshabilitado = false;
-                          resetDeshabilitado = true;
-                          if (tConcetracionSeg < 1) {
-                            startState = 1;
-                            tipoActividad = "Focus";
-                            kindActivity = false;
-                            tiempoPantalla =
-                                '${widget.tConcentracion.toString()}:00';
-                            contador = 0;
-                          }
-                        } else if (tDescansoSeg < 60) {
-                          tiempoPantalla = '$tDescansoSeg';
-                          tDescansoSeg--;
-                        } else {
-                          int m = tDescansoSeg ~/ 60;
-                          int s = tDescansoSeg - (60 * m);
-                          if (s < 10) {
-                            tiempoPantalla = '$m:0$s';
-                          } else {
-                            tiempoPantalla = '$m:$s';
-                          }
-                          tDescansoSeg--;
-                        }
-                      });
-                    });
+                    Timer.periodic(
+                      Duration(seconds: 1),
+                      (t) {
+                        setState(
+                          () {
+                            if (tDescansoSeg < 1 || revisarTiempoDes == true) {
+                              t.cancel();
+                              revisarTiempoDes = false;
+                              tiempoPantalla =
+                                  '${widget.tDescanso.toString()}:00';
+                              botonDeshabilitado = false;
+                              resetDeshabilitado = true;
+                              if (tConcetracionSeg < 1) {
+                                startState = 1;
+                                tipoActividad = "Focus";
+                                kindActivity = false;
+                                tiempoPantalla =
+                                    '${widget.tConcentracion.toString()}:00';
+                                contador = 0;
+                              }
+                            } else if (tDescansoSeg < 60) {
+                              tiempoPantalla = '$tDescansoSeg';
+                              tDescansoSeg--;
+                            } else {
+                              int m = tDescansoSeg ~/ 60;
+                              int s = tDescansoSeg - (60 * m);
+                              if (s < 10) {
+                                tiempoPantalla = '$m:0$s';
+                              } else {
+                                tiempoPantalla = '$m:$s';
+                              }
+                              tDescansoSeg--;
+                            }
+                            if (tDescansoSeg < 11) {
+                              animacionActual = "FinRelax";
+                            }
+                          },
+                        );
+                      },
+                    );
                   }
                   break;
                 default:

@@ -26,6 +26,7 @@ class _GoalsCardState extends State<GoalsCard> {
       axisAlignment: 0.0,
       child: Center(
         child: Container(
+          height: 75,
           margin: EdgeInsets.all(10),
           //width: anchoPantalla * 0.9,
           decoration: BoxDecoration(
@@ -75,7 +76,9 @@ class _GoalsCardState extends State<GoalsCard> {
                   },
                   child: Icon(
                     Icons.arrow_forward_ios,
-                    size: anchoPantalla * 0.1,
+                    size: (MediaQuery.of(context).size.width < 600)
+                        ? anchoPantalla * 0.1
+                        : 40,
                     color: Colors.cyan[900],
                   ),
                 ), //
