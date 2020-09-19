@@ -1,6 +1,7 @@
 import 'package:aquadoro/goals_card.dart';
 import 'package:flutter/material.dart';
 import 'package:animated_text_kit/animated_text_kit.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 class GoalsPage extends StatefulWidget {
   @override
@@ -106,7 +107,7 @@ class GoalsPageState extends State<GoalsPage> with TickerProviderStateMixin {
             "Vamos a \nhacerlo...",
             "¿Qué has estado dejando \npendiente?",
           ],
-          textStyle: TextStyle(
+          textStyle: GoogleFonts.muktaVaani(
             fontSize: 25.0,
             color: Colors.blueGrey[50],
             fontWeight: FontWeight.w600,
@@ -126,9 +127,11 @@ class GoalsPageState extends State<GoalsPage> with TickerProviderStateMixin {
     GoalsCard meta = new GoalsCard(
       animationController: animacionCards,
     );
-    setState(() {
-      _metas.insert(_metas.length, meta);
-    });
+    setState(
+      () {
+        _metas.insert(_metas.length, meta);
+      },
+    );
     meta.animationController.forward();
   }
 

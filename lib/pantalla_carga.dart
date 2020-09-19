@@ -1,6 +1,7 @@
 import 'package:aquadoro/goals_page.dart';
 import 'package:flutter/material.dart';
 import 'package:splashscreen/splashscreen.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 class PantallaDeCarga extends StatefulWidget {
   PantallaDeCarga({Key key}) : super(key: key);
@@ -16,8 +17,8 @@ class _PantallaDeCargaState extends State<PantallaDeCarga> {
       seconds: 3,
       navigateAfterSeconds: GoalsPage(),
       title: Text(
-        'Acuadoro',
-        style: TextStyle(
+        'Aquadoro',
+        style: GoogleFonts.muktaVaani(
           fontWeight: FontWeight.bold,
           fontSize: 60.0,
           color: Colors.blueGrey[50],
